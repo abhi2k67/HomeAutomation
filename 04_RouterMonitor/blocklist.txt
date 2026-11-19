@@ -1,0 +1,21 @@
+# Local DNS Sinkhole Blocklist (one domain per line, # for comments)
+# Subdomains are matched automatically (e.g. "doubleclick.net" blocks "ad.doubleclick.net")
+
+doubleclick.net
+googlesyndication.com
+googleadservices.com
+google-analytics.com
+googletagmanager.com
+ads.yahoo.com
+adservice.google.com
+analytics.twitter.com
+graph.instagram.com
+pixel.facebook.com
+app-measurement.com
+crashlytics.com
+scorecardresearch.com
+tracking.miui.com
+data.mistat.xiaomi.com
+api.ad.xiaomi.com
+sdkconfig.ad.xiaomi.com
+telemetry.sdk.inmobi.com

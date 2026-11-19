@@ -1,0 +1,8 @@
+﻿2026-11-18 22:48:53 | UNINSTALL | 58311FDCH000CF | com.android.chrome | Failure [only root can delete system app for a particular user]
+2026-11-18 22:48:53 | UNINSTALL | 58311FDCH000CF | com.google.android.youtube | Failure [only root can delete system app for a particular user]
+2026-11-18 22:48:53 | UNINSTALL | 58311FDCH000CF | com.google.android.apps.youtube.music | Failure [only root can delete system app for a particular user]
+2026-11-18 22:48:54 | UNINSTALL | 58311FDCH000CF | com.cleandroid.android_junk_cleaner | Failure [not installed for 0]
+2026-11-18 22:48:54 | UNINSTALL | 58311FDCH000CF | com.mxtech.videoplayer.ad | Success
+2026-11-18 22:48:54 | UNINSTALL | 58311FDCH000CF | com.zeptoconsumerapp | Success
+2026-11-18 22:48:54 | UNINSTALL | 58311FDCH000CF | in.swiggy.android | Success
+2026-11-18 22:48:55 | UNINSTALL | 58311FDCH000CF | com.grofers.customerapp | Success

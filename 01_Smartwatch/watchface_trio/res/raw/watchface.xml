@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WatchFace width="466" height="466">
+    <UserConfigurations>
+        <ListConfiguration
+            id="face_style"
+            displayName="config_style_name"
+            defaultValue="eclipse">
+            <ListOption id="eclipse" displayName="style_eclipse" />
+            <ListOption id="braun" displayName="style_braun" />
+            <ListOption id="kinetic" displayName="style_kinetic" />
+        </ListConfiguration>
+    </UserConfigurations>
+
+    <Scene backgroundColor="#FF000000">
+        <ListConfiguration id="face_style">
+
+            <!-- ============================================================ -->
+            <!-- STYLE 1: ECLIPSE REGULATOR (Round 466x466 Orbital Geometry)  -->
+            <!-- ============================================================ -->
+            <ListOption id="eclipse">
+                <!-- Subtle orbital ring + cardinal pips -->
+                <PartImage x="0" y="0" width="466" height="466">
+                    <Variant mode="AMBIENT" target="alpha" value="70" />
+                    <Image resource="dial_eclipse_ring" />
+                </PartImage>
+
+                <!-- Orbiting seconds dot along the 214px radius ring -->
+                <Group x="0" y="0" width="466" height="466" pivotX="0.5" pivotY="0.5">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Transform target="angle" value="[SECOND] * 6" />
+                    <PartDraw x="0" y="0" width="466" height="466">
+                        <Ellipse x="228" y="14" width="10" height="10">
+                            <Fill color="#FFD4AF6A" />
+                        </Ellipse>
+                    </PartDraw>
+                </Group>
+
+                <!-- Hairline Battery Arc (Top-Right) & Steps Arc (Bottom-Left) -->
+                <PartDraw x="0" y="0" width="466" height="466" alpha="220">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Arc x="28" y="28" width="410" height="410" startAngle="20" endAngle="20" direction="CLOCKWISE">
+                        <Transform target="endAngle" value="20 + 140 * ([BATTERY_PERCENT] / 100.0)" />
+                        <Stroke color="#FFD4AF6A" thickness="2.5" cap="ROUND" />
+                    </Arc>
+                    <Arc x="28" y="28" width="410" height="410" startAngle="200" endAngle="200" direction="CLOCKWISE">
+                        <Transform target="endAngle" value="200 + 140 * clamp([STEP_COUNT] / 10000.0, 0.0, 1.0)" />
+                        <Stroke color="#FFDCE2E8" thickness="2.5" cap="ROUND" />
+                    </Arc>
+                </PartDraw>
+
+                <!-- Optical-Centered Ultra-Thin Time -->
+                <PartText x="53" y="148" width="360" height="120" alpha="240">
+                    <Variant mode="AMBIENT" target="alpha" value="150" />
+                    <Text align="CENTER">
+                        <Font family="sans-serif-thin" size="96" weight="THIN" color="#FFF2EFE9">
+                            <Template>%02d:%02d
+                                <Parameter expression="[HOUR_0_23]" />
+                                <Parameter expression="[MINUTE]" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+
+                <!-- Minimalist Date & Battery Footer -->
+                <PartText x="83" y="284" width="300" height="32" alpha="185">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER">
+                        <Font family="sans-serif-light" size="15" weight="LIGHT" color="#FFD4AF6A">
+                            <Template>%s %02d  ·  %d%%
+                                <Parameter expression="[DAY_OF_WEEK_S]" />
+                                <Parameter expression="[DAY]" />
+                                <Parameter expression="[BATTERY_PERCENT]" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+            </ListOption>
+
+            <!-- ============================================================ -->
+            <!-- STYLE 2: BRAUN INSTRUMENT (60 Radial Ticks + Telemetry)      -->
+            <!-- ============================================================ -->
+            <ListOption id="braun">
+                <!-- 60 Precision Radial Tick Marks -->
+                <PartImage x="0" y="0" width="466" height="466">
+                    <Variant mode="AMBIENT" target="alpha" value="65" />
+                    <Image resource="dial_braun_ticks" />
+                </PartImage>
+
+                <!-- Sweeping Warm-Amber Seconds Marker -->
+                <Group x="0" y="0" width="466" height="466" pivotX="0.5" pivotY="0.5">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Transform target="angle" value="[SECOND] * 6" />
+                    <PartDraw x="0" y="0" width="466" height="466">
+                        <Line startX="233" startY="10" endX="233" endY="28">
+                            <Stroke color="#FFE06E38" thickness="3" cap="ROUND" />
+                        </Line>
+                    </PartDraw>
+                </Group>
+
+                <!-- Upper Date Tag -->
+                <PartText x="113" y="122" width="240" height="28" alpha="200">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER">
+                        <Font family="monospace" size="14" weight="NORMAL" color="#FFE06E38">
+                            <Template>%s %02d
+                                <Parameter expression="[DAY_OF_WEEK_S]" />
+                                <Parameter expression="[DAY]" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+
+                <!-- Crisp Monospace Digital Time -->
+                <PartText x="63" y="164" width="340" height="96" alpha="242">
+                    <Variant mode="AMBIENT" target="alpha" value="150" />
+                    <Text align="CENTER">
+                        <Font family="monospace" size="76" weight="LIGHT" color="#FFF2EFE9">
+                            <Template>%02d:%02d
+                                <Parameter expression="[HOUR_0_23]" />
+                                <Parameter expression="[MINUTE]" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+
+                <!-- Lower Instrument Telemetry -->
+                <PartText x="83" y="294" width="300" height="32" alpha="190">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER">
+                        <Font family="monospace" size="14" weight="NORMAL" color="#FFDCE2E8">
+                            <Template>BAT %d%%  ·  %d STP
+                                <Parameter expression="[BATTERY_PERCENT]" />
+                                <Parameter expression="[STEP_COUNT]" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+            </ListOption>
+
+            <!-- ============================================================ -->
+            <!-- STYLE 3: KINETIC HORIZON (Gyro Metallic Glint + Thin Type)   -->
+            <!-- ============================================================ -->
+            <ListOption id="kinetic">
+                <!-- Gyroscope-Reactive Brushed Metallic Sheen -->
+                <Group x="0" y="0" width="466" height="466">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Transform target="x" value="clamp([ACCELEROMETER_ANGLE_Y] * 0.6, -18, 18)" />
+                    <Transform target="y" value="clamp([ACCELEROMETER_ANGLE_X] * 0.6, -18, 18)" />
+                    <PartImage x="-27" y="-27" width="520" height="520">
+                        <Image resource="dial_kinetic_glint" />
+                    </PartImage>
+                </Group>
+
+                <!-- Hairline Inner Horizon Ring -->
+                <PartDraw x="0" y="0" width="466" height="466" alpha="90">
+                    <Variant mode="AMBIENT" target="alpha" value="35" />
+                    <Ellipse x="33" y="33" width="400" height="400">
+                        <Stroke color="#FFD4AF6A" thickness="1" />
+                    </Ellipse>
+                </PartDraw>
+
+                <!-- Stacked Editorial Hours & Minutes -->
+                <PartText x="83" y="106" width="300" height="115" alpha="240">
+                    <Variant mode="AMBIENT" target="alpha" value="150" />
+                    <Text align="CENTER">
+                        <Font family="sans-serif-thin" size="104" weight="THIN" color="#FFF2EFE9">
+                            <Template>%02d
+                                <Parameter expression="[HOUR_0_23]" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+
+                <PartText x="83" y="212" width="300" height="115" alpha="210">
+                    <Variant mode="AMBIENT" target="alpha" value="130" />
+                    <Text align="CENTER">
+                        <Font family="sans-serif-thin" size="104" weight="THIN" color="#FFD4AF6A">
+                            <Template>%02d
+                                <Parameter expression="[MINUTE]" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+
+                <!-- Minimalist Bottom Dot + Battery -->
+                <PartText x="113" y="352" width="240" height="28" alpha="180">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER">
+                        <Font family="sans-serif-light" size="14" weight="LIGHT" color="#FFEAEAEA">
+                            <Template>%s %02d  ·  %d%%
+                                <Parameter expression="[DAY_OF_WEEK_S]" />
+                                <Parameter expression="[DAY]" />
+                                <Parameter expression="[BATTERY_PERCENT]" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+            </ListOption>
+
+        </ListConfiguration>
+    </Scene>
+</WatchFace>

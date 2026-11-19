@@ -1,0 +1,14 @@
+{
+  "connected": true,
+  "serial": "192.168.0.11:35773",
+  "last_ip_port": "192.168.0.11:35773",
+  "battery_pct": 100,
+  "battery_status": "Charging",
+  "temp_c": 35.3,
+  "voltage_v": 5000.0,
+  "wifi_ssid": "Abhishek singh 5G",
+  "wifi_rssi": "-47 dBm",
+  "watch_ip": "192.168.0.11",
+  "last_seen": "22:22:03",
+  "last_event": "Polling watch..."
+}

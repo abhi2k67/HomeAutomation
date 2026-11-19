@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="watch_face_name">Minimal Trio</string>
+    <string name="config_style_name">Face Style</string>
+    <string name="style_eclipse">1 · Eclipse Regulator</string>
+    <string name="style_braun">2 · Braun Instrument</string>
+    <string name="style_kinetic">3 · Kinetic Horizon</string>
+</resources>
